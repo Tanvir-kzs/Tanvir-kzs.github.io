@@ -2,26 +2,419 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Tanvir Ahmed - Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tanvir Ahmed – CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="icon" href="./assets/cv.png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1a2e;
+      --accent: #c8974a;
+      --muted: #6b6b80;
+      --rule: #d8d4ce;
+      --bg: #faf8f5;
+      --paper: #ffffff;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 3rem 1.5rem;
+    }
+
+    .page {
+      max-width: 780px;
+      margin: 0 auto;
+      background: var(--paper);
+      box-shadow: 0 4px 40px rgba(0,0,0,0.08);
+      padding: 3.5rem 4rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── HEADER ── */
+    .header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
+      align-items: start;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid var(--ink);
+      margin-bottom: 2.2rem;
+    }
+
+    .header-name h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .header-name .location {
+      margin-top: 0.4rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .header-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      text-align: right;
+      font-size: 0.82rem;
+    }
+
+    .header-links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .header-links a:hover { opacity: 0.7; }
+
+    .header-links .contact-item {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    /* ── SECTION ── */
+    section {
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* ── RESEARCH INTERESTS ── */
+    .interests-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .interest-tag {
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      color: var(--ink);
+      font-size: 0.82rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 2px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    .scholar-links {
+      margin-top: 0.8rem;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .scholar-links a {
+      font-size: 0.82rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .scholar-links a:hover { opacity: 0.7; }
+    .scholar-links span {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ── EDUCATION ── */
+    .entry {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.3rem 1rem;
+      margin-bottom: 1.4rem;
+    }
+    .entry:last-child { margin-bottom: 0; }
+
+    .entry-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .entry-date {
+      font-size: 0.8rem;
+      color: var(--muted);
+      white-space: nowrap;
+      text-align: right;
+      padding-top: 2px;
+    }
+    .entry-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      grid-column: 1;
+    }
+    .entry-detail {
+      font-size: 0.85rem;
+      color: var(--ink);
+      grid-column: 1 / -1;
+      margin-top: 0.15rem;
+    }
+    .entry-location {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: right;
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    /* ── PROJECTS ── */
+    .project-block {
+      padding: 1rem 1.2rem;
+      border-left: 3px solid var(--accent);
+      background: var(--bg);
+      margin-bottom: 0.8rem;
+    }
+    .project-block:last-child { margin-bottom: 0; }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+    }
+    .project-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .project-date {
+      font-size: 0.78rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .project-tech {
+      margin-top: 0.35rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .project-tech strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ── SKILLS ── */
+    .skills-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .skill-chip {
+      background: var(--ink);
+      color: #fff;
+      font-size: 0.8rem;
+      padding: 0.28rem 0.75rem;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── COURSES ── */
+    .course-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .course-item:last-child { border-bottom: none; }
+
+    .course-name {
+      font-size: 0.88rem;
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .course-org {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ── ACTIVITIES ── */
+    .activity-item {
+      margin-bottom: 1.1rem;
+    }
+    .activity-item:last-child { margin-bottom: 0; }
+
+    .activity-role {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .activity-org {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.1rem;
+    }
+    .activity-period {
+      font-size: 0.78rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-top: 0.1rem;
+    }
+
+    /* ── REFERENCES ── */
+    .ref-note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      body { background: white; padding: 0; }
+      .page { box-shadow: none; padding: 2rem 2.5rem; }
+    }
+
+    @media (max-width: 600px) {
+      .page { padding: 2rem 1.5rem; }
+      .header { grid-template-columns: 1fr; }
+      .header-links { text-align: left; }
+      .header-name h1 { font-size: 2rem; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Tanvir Ahmed</h1>
-  <p>2nd Year CSE Student | Bangladesh Army University of Science & Technology</p>
+<div class="page">
 
-  <h2>About Me</h2>
-  <p>I am passionate about Computer Science, Robotics, and Software Development.</p>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-name">
+      <h1>Tanvir Ahmed</h1>
+      <p class="location">Khulna, Bangladesh, 9000</p>
+    </div>
+    <div class="header-links">
+      <a href="mailto:rahman.tanvir.cse@gmail.com">rahman.tanvir.cse@gmail.com</a>
+      <span class="contact-item">+880 1757 907 716</span>
+      <a href="https://tanvir-kzs.github.io/" target="_blank">tanvir-kzs.github.io</a>
+      <a href="https://github.com/Tanvir-kzs" target="_blank">github.com/Tanvir-kzs</a>
+      <a href="https://www.linkedin.com/in/tanvir-ahmed8059" target="_blank">LinkedIn</a>
+    </div>
+  </header>
 
-  <h2>Projects</h2>
-  <ul>
-    <li>CarePlus Hospital Patient Management System (C)</li>
-    <li>Car Rental Management System (C++)</li>
-    <li>Robotics Club Activities</li>
-  </ul>
+  <!-- RESEARCH INTERESTS -->
+  <section>
+    <h2 class="section-title">Research Interests</h2>
+    <div class="interests-list">
+      <span class="interest-tag">Machine Learning</span>
+      <span class="interest-tag">Artificial Intelligence</span>
+      <span class="interest-tag">Cybersecurity</span>
+      <span class="interest-tag">Internet of Things (IoT)</span>
+      <span class="interest-tag">Robotics</span>
+    </div>
+    <div class="scholar-links">
+      <span>Google Scholar: <a href="#" target="_blank">Tanvir Ahmed</a></span>
+    </div>
+  </section>
 
-  <h2>Skills</h2>
-  <p>C, C++, Python, Data Structures & Algorithms</p>
+  <!-- EDUCATION -->
+  <section>
+    <h2 class="section-title">Education</h2>
 
-  <h2>Contact</h2>
-  <p>Email: your-email@gmail.com</p>
+    <div class="entry">
+      <div class="entry-title">Bangladesh Army University of Science &amp; Technology, Khulna</div>
+      <div class="entry-date">2024 – Present</div>
+      <div class="entry-sub">B.Sc. in Computer Science and Engineering</div>
+      <div class="entry-location">Khulna, Bangladesh</div>
+      <div class="entry-detail">CGPA: 3.05 / 4.00</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title">Khulna Government Model School &amp; College</div>
+      <div class="entry-date">2019 – 2021</div>
+      <div class="entry-sub">Higher Secondary Certificate (Science)</div>
+      <div class="entry-location">Khulna, Bangladesh</div>
+      <div class="entry-detail">GPA: 5.00 / 5.00</div>
+    </div>
+  </section>
+
+  <!-- MAJOR PROJECT & THESIS -->
+  <section>
+    <h2 class="section-title">Major Project &amp; Thesis</h2>
+    <div class="project-block">
+      <div class="project-header">
+        <span class="project-name">Car Rental Management System (Console-Based)</span>
+        <span class="project-date">2025</span>
+      </div>
+      <p class="project-tech"><strong>Technologies:</strong> C++, Object-Oriented Programming (OOP), File Handling, CSV Storage</p>
+    </div>
+  </section>
+
+  <!-- TECHNICAL SKILLS -->
+  <section>
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="skills-row">
+      <span class="skill-chip">C++</span>
+      <span class="skill-chip">C</span>
+    </div>
+  </section>
+
+  <!-- ONLINE COURSES -->
+  <section>
+    <h2 class="section-title">Online Courses</h2>
+    <div class="course-item">
+      <span class="course-name">Advanced Content Creation with AI</span>
+      <span class="course-org">ICT Olympiad Bangladesh</span>
+    </div>
+    <div class="course-item">
+      <span class="course-name">Advanced Creative Design Mastery</span>
+      <span class="course-org">ICT Olympiad Bangladesh</span>
+    </div>
+  </section>
+
+  <!-- CO-CURRICULAR ACTIVITIES -->
+  <section>
+    <h2 class="section-title">Co-Curricular Activities</h2>
+
+    <div class="activity-item">
+      <div class="activity-role">President</div>
+      <div class="activity-org">Robotic &amp; Innovation Club of BAUSTK</div>
+      <div class="activity-period">2025 – Present</div>
+    </div>
+
+    <div class="activity-item">
+      <div class="activity-role">Campus Ambassador</div>
+      <div class="activity-org">ICT Olympiad Bangladesh</div>
+      <div class="activity-period">2025</div>
+    </div>
+  </section>
+
+  <!-- REFERENCES -->
+  <section>
+    <h2 class="section-title">References</h2>
+    <p class="ref-note">Not included at this stage. Available upon request.</p>
+  </section>
+
+</div>
 </body>
 </html>
